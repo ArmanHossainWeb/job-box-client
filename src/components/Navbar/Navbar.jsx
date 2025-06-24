@@ -1,13 +1,27 @@
 import React from "react";
-import logo from "../../assets/images/logo.svg"
+import logo from "../../assets/images/logo.svg";
 import { NavLink } from "react-router";
+import UseAuth from "../../hooks/UseAuth";
 
 const Navbar = () => {
-      const links = (
+  const { user, logout } = UseAuth();
+  const links = (
     <div className="space-x-3">
       <NavLink to={"/"}>Home</NavLink>
     </div>
   );
+
+  // logout
+  const handleSignOut = () => {
+    logout()
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log(error);
+      });
+  };
 
   return (
     <div className="bg-[#F2F6FD]">
@@ -46,11 +60,21 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <NavLink to={"/login"}>
-            <button className="btn btn-primary">
-              Login
+          {user ? (
+            <button
+              className="btn bg-primary hover:bg-secondary text-white"
+              onClick={handleSignOut}
+            >
+              sign out
             </button>
-          </NavLink>
+          ) : (
+            <NavLink
+              className={"btn bg-primary hover:bg-secondary text-white"}
+              to={"/register"}
+            >
+              Register
+            </NavLink>
+          )}
         </div>
       </div>
     </div>
