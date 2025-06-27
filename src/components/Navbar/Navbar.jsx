@@ -8,6 +8,11 @@ const Navbar = () => {
   const links = (
     <div className="space-x-3">
       <NavLink to={"/"}>Home</NavLink>
+      {
+        user && <>
+        <NavLink to={"/myApplications"}>My Applications</NavLink>
+        </>
+      }
     </div>
   );
 
@@ -24,8 +29,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-[#F2F6FD]">
-      <div className="navbar w-11/12 x-auto">
+    <div className="">
+      <div className="navbar w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

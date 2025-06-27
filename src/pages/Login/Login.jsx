@@ -1,12 +1,18 @@
 import React from "react";
 import LottiesLogin from "../../assets/lotties/login.json";
 import Lottie from "lottie-react";
-import { NavLink } from "react-router";
+import { NavLink, useLocation, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import UseAuth from "../../hooks/UseAuth";
 
 const Login = () => {
   const { loginUser } = UseAuth();
+  const navigate = useNavigate()
+  const location = useLocation()
+  console.log("login location ",location);
+
+  const from = location.state || "/"
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -20,12 +26,15 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         console.log(user);
+        navigate(from)
         // ...
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  
   return (
     <div>
       <div className="hero bg-base-200 min-h-screen">
@@ -72,7 +81,7 @@ const Login = () => {
                   </button>
                 </fieldset>
               </form>
-              <div class="divider">OR</div>
+              <div className="divider">OR</div>
               <button className="btn btn-white mt-4">
                 <FcGoogle /> login with google
               </button>
