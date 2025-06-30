@@ -8,9 +8,17 @@ const Navbar = () => {
   const links = (
     <div className="space-x-3">
       <NavLink to={"/"}>Home</NavLink>
+    {/* for applicate  links . check roles as well  */}
       {
         user && <>
         <NavLink to={"/myApplications"}>My Applications</NavLink>
+        </>
+      }
+      {/* for recruter . check role as well  */}
+      {
+        user && <>
+        <NavLink to={"/addJob"}>Add Job</NavLink>
+        <NavLink to={"/myPostedJobs"}>My Posted Jobs</NavLink>
         </>
       }
     </div>

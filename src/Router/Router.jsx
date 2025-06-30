@@ -7,6 +7,10 @@ import JobDetails from "../pages/jobDetails/JobDetails";
 import PrivetRoute from "../routes/PrivetRoute";
 import JobApply from "../pages/jobApply/JobApply";
 import MyApplications from "../pages/MyApplications/MyApplications";
+import AddJob from "../pages/AddJob/AddJob";
+import MyPostedJobs from "../pages/MyPostedJobs/MyPostedJobs";
+import ViewApplications from "../pages/ViewApplications/ViewApplications";
+import { param } from "motion/react-client";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +33,20 @@ const router = createBrowserRouter([
         {
           path:"/myApplications",
           element:<PrivetRoute><MyApplications></MyApplications></PrivetRoute>
+        },
+        {
+          path:"/addJob",
+          element:<PrivetRoute><AddJob></AddJob></PrivetRoute>
+        },
+        {
+          path:"/myPostedJobs",
+          element:<PrivetRoute><MyPostedJobs></MyPostedJobs></PrivetRoute>
+        },
+        {
+          path:"/applications/:job_id",
+          loader: ({params}) => fetch(`http://localhost:3000/applications/job/${params.job_id}`),
+          element:<PrivetRoute><ViewApplications></ViewApplications></PrivetRoute>,
+
         },
         {
           path:'/register',

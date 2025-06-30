@@ -7,6 +7,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
+import axios from "axios";
 
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -28,6 +29,18 @@ const AuthProvider = ({ children }) => {
   useEffect(()=>{
     const unSubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser)
+      if(currentUser?.email){
+        const userData = {email: currentUser.email}
+        axios.post("http://localhost:3000/jwt", userData)
+        .then(res => {
+          console.log("token after jwt",res.data);
+          const token = res.data.token;
+          
+        })
+        .catch(error => {
+          console.log(error);
+        })
+      }
       setLoading(false)
       console.log("user in the auth state change ", currentUser);
     })
