@@ -26,28 +26,30 @@ const AuthProvider = ({ children }) => {
   };
 
   // observer
-  useEffect(()=>{
-    const unSubscribe = onAuthStateChanged(auth, currentUser => {
-      setUser(currentUser)
-      if(currentUser?.email){
-        const userData = {email: currentUser.email}
-        axios.post("http://localhost:3000/jwt", userData)
-        .then(res => {
-          console.log("token after jwt",res.data);
-          const token = res.data.token;
-          
-        })
-        .catch(error => {
-          console.log(error);
-        })
+  useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      if (currentUser?.email) {
+        const userData = { email: currentUser.email };
+        axios
+          .post("http://localhost:3000/jwt", userData, {
+            withCredentials: true
+          })
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((err) => {
+            console.error("JWT Fetch Error:", err);
+          });
       }
-      setLoading(false)
+
+      setLoading(false);
       console.log("user in the auth state change ", currentUser);
-    })
+    });
     return () => {
       unSubscribe();
-    }
-  },[])
+    };
+  }, []);
 
   // signOut
   const logout = () => {
