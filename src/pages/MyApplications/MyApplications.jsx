@@ -1,9 +1,9 @@
 import React, { Suspense } from "react";
 import ApplicationStats from "./ApplicationStats";
-import Loader from "../../components/loader/Loader";
 import ApplicationList from "./ApplicationList";
 import UseAuth from "../../hooks/UseAuth";
 import { myApplicationsPromise } from "../../api/applicationsApi";
+import Loader from "../../components/loader/Loader";
 
 const MyApplications = () => {
   const { user } = UseAuth();
@@ -11,7 +11,7 @@ const MyApplications = () => {
     <div>
       <ApplicationStats></ApplicationStats>
 
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<Loader></Loader>}>
         <ApplicationList myApplicationPromise={myApplicationsPromise(user.email)} />
       </Suspense>
     </div>
