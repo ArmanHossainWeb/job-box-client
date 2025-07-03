@@ -9,7 +9,7 @@ const MyPostedJobs = () => {
         <div className='w-11/12 mx-auto'>
             <h2>my posted jobs : </h2>
             <Suspense>
-                <JobList jobsCreatedByPromise={jobsCreatedByPromise(user.email)} ></JobList>
+                <JobList jobsCreatedByPromise={jobsCreatedByPromise(user.email, user.accessToken)} ></JobList>
             </Suspense>
         </div>
     );

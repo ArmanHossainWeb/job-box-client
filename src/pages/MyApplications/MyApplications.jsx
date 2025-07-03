@@ -7,12 +7,13 @@ import Loader from "../../components/loader/Loader";
 
 const MyApplications = () => {
   const { user } = UseAuth();
+ 
   return (
     <div>
       <ApplicationStats></ApplicationStats>
 
       <Suspense fallback={<Loader></Loader>}>
-        <ApplicationList myApplicationPromise={myApplicationsPromise(user.email)} />
+        <ApplicationList myApplicationPromise={myApplicationsPromise(user.email,user.accessToken)} />
       </Suspense>
     </div>
   );
