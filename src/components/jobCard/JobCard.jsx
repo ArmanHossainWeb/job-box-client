@@ -19,47 +19,58 @@ const JobCard = ({ job }) => {
   } = job;
   return (
     <div className="">
-      <div className="card bg-base-200  shadow-sm p-3">
+      <div className="card bg-base-200 shadow-sm p-4">
         <div className="flex gap-3 items-center">
           <figure>
-            <img className="w-14" src={company_logo || "default-logo.png"} alt="Shoes" />
+            <img
+              className="w-14"
+              src={company_logo || "default-logo.png"}
+              alt="Company Logo"
+            />
           </figure>
           <div>
-            <h1 className="font-semibold text-2xl">{company}</h1>
-            <div className="flex items-center gap-2">
+            <h1 className="font-semibold text-xl">{title}</h1>
+            <div className="flex items-center gap-1 text-sm text-gray-500">
               <CiLocationOn />
               <p>{location}</p>
             </div>
           </div>
         </div>
-        <div className="card-body">
-          <h2 className="card-title">{title}</h2>
-          <div className="flex ">
-            <p className="flex gap-1 items-center text-gray-500">
+
+        <div className="card-body p-0 pt-3">
+          <h2 className="card-title text-lg">{company}</h2>
+
+          <div className="flex gap-3 mb-2">
+            <p className="flex gap-1 items-center text-sm text-gray-500">
               <PiShoppingBagFill />
               {jobType}
             </p>
-            <p className="flex gap-1 items-center text-gray-500">
+            <p className="flex gap-1 items-center text-sm text-gray-500">
               <MdOutlineAccessTime />
               {applicationDeadline}
             </p>
           </div>
-          <p>{description}</p>
-          <div>
-            {requirements.map((skill, index) => (
-              <div key={index} className="badge badge-outline m-1">
-                {skill}
-              </div>
-            ))}
+
+          <p className="text-sm mb-3">
+           {description}
+          </p>
+
+          <div className="mb-4">
+            {requirements.map(
+              (skill, index) => (
+                <span key={index} className="badge badge-outline m-1 text-xs">
+                  {skill}
+                </span>
+              )
+            )}
           </div>
-          <div className="card-actions justify-end">
-            <p className="text-lg text-primary font-semibold">
-              {salaryRange.currency} {salaryRange.min}-{salaryRange.max}
+
+          <div className="card-actions justify-between items-center">
+            <p className="text-md font-semibold text-primary">
+              {salaryRange.currency}   {salaryRange.min}-{salaryRange.max}
             </p>
-            <Link to={`/jobs/${_id}`}>
-              <button className="btn btn-soft  btn-primary">
-                Show Details
-              </button>
+                 <Link to={`/jobs/${_id}`}>
+            <button className="btn btn-primary btn-sm">Show Details</button>
             </Link>
           </div>
         </div>

@@ -44,46 +44,64 @@ const JobApply = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-xl text-center">
+
+    <div className="max-w-md mx-auto mt-10 px-4">
+      <h1 className="text-2xl font-semibold text-center text-gray-800 mb-4">
         Apply for this job:{" "}
-        <Link to={`/jobs/${jobId}`}>
-          <span className="text-red-500">details</span>
+        <Link to={`/jobs/${jobId}`} className="text-red-500 underline">
+          View Details
         </Link>
       </h1>
 
       <form
         onSubmit={handleApply}
-        className="bg-base-200 rounded-box mx-auto w-xs my-5"
+        className="bg-white p-6 shadow-lg rounded-2xl space-y-4"
       >
-        <fieldset className="fieldset  p-4">
-          <label className="label">Linked In</label>
+        <div>
+          <label className="block mb-1 text-sm font-medium text-gray-700">
+            LinkedIn Profile
+          </label>
           <input
             type="url"
             name="linkedin"
-            className="input"
-            placeholder="enter your linkedin url"
+            required
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            placeholder="https://linkedin.com/in/your-profile"
           />
-        </fieldset>
-        <fieldset className="fieldset  p-4">
-          <label className="label">github</label>
+        </div>
+
+        <div>
+          <label className="block mb-1 text-sm font-medium text-gray-700">
+            GitHub Profile
+          </label>
           <input
             type="url"
             name="github"
-            className="input"
-            placeholder="enter your github url"
+            required
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            placeholder="https://github.com/your-username"
           />
-        </fieldset>
-        <fieldset className="fieldset p-4">
-          <label className="label">facebook</label>
+        </div>
+
+        <div>
+          <label className="block mb-1 text-sm font-medium text-gray-700">
+            Facebook Profile
+          </label>
           <input
             type="url"
             name="facebook"
-            className="input"
-            placeholder="enter your facebook url"
+            required
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            placeholder="https://facebook.com/your-profile"
           />
-        </fieldset>
-        <input type="submit" className="btn btn-primary w-full p-2" />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition duration-200"
+        >
+          Submit Application
+        </button>
       </form>
     </div>
   );
